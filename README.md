@@ -22,3 +22,10 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [0002-add-two-numbers](https://github.com/zeroone-kr/algorithm/tree/master/0002-add-two-numbers) |
+<!---LeetCode Topics Start-->
+# LeetCode Topics
+## Math
+|  |
+| ------- |
+| [0007-reverse-integer](https://github.com/zeroone-kr/algorithm/tree/master/0007-reverse-integer) |
+<!---LeetCode Topics End-->
