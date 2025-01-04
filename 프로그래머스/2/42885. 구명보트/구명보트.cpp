@@ -26,7 +26,8 @@ int solution(vector<int> people, int limit) {
             
         }else if(people[heavy] <= limit){
             // heavy++;
-        
+            // answer++;
+
         }    
         heavy++;
         answer++;
