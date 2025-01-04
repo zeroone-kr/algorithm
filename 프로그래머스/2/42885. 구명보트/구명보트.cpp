@@ -14,18 +14,22 @@ int solution(vector<int> people, int limit) {
     int heavy=0, light=people.size()-1;
     
     while(heavy <= light){
-    
-        if (people[heavy] + people[light] <= limit){
-            
-            light--;
-        }
         
-        answer++;
+        if (heavy == light && people[heavy] <= limit){
+            // answer++;
+            // heavy++;
+        }else if (people[heavy] + people[light] <= limit){
+        
+            // answer++;
+            // heavy++;
+            light--;
+            
+        }else if(people[heavy] <= limit){
+            // heavy++;
+        
+        }    
         heavy++;
-        // else if(people[heavy] <= limit){
-        //     heavy++;
-        //     answer++;
-        // }    
+        answer++;
     }
 
     return answer;
