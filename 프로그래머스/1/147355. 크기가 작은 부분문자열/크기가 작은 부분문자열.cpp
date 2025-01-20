@@ -5,16 +5,16 @@ using namespace std;
 
 int solution(string t, string p) {
     
-    vector<unsigned long long> result;
+    int cnt=0;
     
     for (int i = 0; i <= t.size()-p.size() ; ++i){
     
         string s = t.substr(i, p.size());
         unsigned long long X = stoull(s);
         unsigned long long C = stoull(p);
-        if ( X <= C ) result.push_back(X);
+        if ( X <= C ) cnt++;
         
     }
     
-    return result.size();
+    return cnt;
 }
