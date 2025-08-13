@@ -1,63 +1,45 @@
-#include <vector>
-#include <queue>
+#include<bits/stdc++.h>
+
 using namespace std;
 
-#define MAX 100
-
-int visited[MAX][MAX];
-
-typedef struct point{
-    int x;
-    int y;
-}Point;
-
+int check[101][101];
+int dx[] = {0, 0, 1, -1};
+int dy[] = {1, -1, 0, 0};
 
 int solution(vector<vector<int> > maps)
 {
-    int width = maps[0].size();
-    int height = maps.size();    
-    int answer = 0;
-    
-    queue<Point> q;
-    
-    Point start_point = {0, 0};
-    q.push(start_point);
-    
-    visited[0][0] = 1;
-    
+    int n, m;
+    n = maps.size();
+    m = maps[0].size();
+    queue<pair<int, int>> q;
+    q.push(make_pair(0, 0));
+    check[0][0] = true;
+
     while(!q.empty()){
-        
-        Point c = q.front();
+        int x = q.front().first;
+        int y = q.front().second;
         q.pop();
-        
-        int cur_x = c.x; 
-        int cur_y = c.y;
-        
-        if(cur_x-1 >= 0 && maps[cur_y][cur_x-1]==1 && visited[cur_y][cur_x-1] == 0){
-            q.push({cur_x-1, cur_y});
-            visited[cur_y][cur_x-1]=visited[cur_y][cur_x]+1;
+
+        for(int i=0; i<4; i++){
+            int nx = x + dx[i];
+            int ny = y + dy[i];
+            if(0<=nx && nx<n && 0<=ny && ny<m){
+                if(check[nx][ny] == false && maps[nx][ny] > 0){
+                    check[nx][ny] = true;
+                    maps[nx][ny] = maps[x][y] + 1;
+                    q.push(make_pair(nx, ny));
+                }
+            }
         }
-            
-        if(cur_x+1 < width && maps[cur_y][cur_x+1]==1 && visited[cur_y][cur_x+1] == 0){
-            q.push({cur_x+1, cur_y});
-            visited[cur_y][cur_x+1]=visited[cur_y][cur_x]+1;
-        }
-            
-        if(cur_y-1 >= 0 && maps[cur_y-1][cur_x]==1 && visited[cur_y-1][cur_x] == 0){
-            q.push({cur_x, cur_y-1});
-            visited[cur_y-1][cur_x]=visited[cur_y][cur_x]+1;
-        }
-        
-        if(cur_y+1 < height && maps[cur_y+1][cur_x]==1 && visited[cur_y+1][cur_x] == 0){
-            q.push({cur_x, cur_y+1});
-            visited[cur_y+1][cur_x]=visited[cur_y][cur_x]+1;
-        }    
-        
     }
 
-    if (!visited[height-1][width-1]) {
-        return -1;
+
+
+    int answer = 0;
+    if(maps[n-1][m-1] == 1){
+        answer = -1;
+    }else{
+        answer = maps[n-1][m-1];
     }
-    
-    return visited[height-1][width-1];
+    return answer;
 }
